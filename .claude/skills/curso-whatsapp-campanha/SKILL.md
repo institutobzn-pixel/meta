@@ -122,9 +122,22 @@ Rodar de novo com o mesmo curso: ler o arquivo, mostrar os dados e perguntar se 
    Meta achar quem responde). Só pesquisar interesses se o usuário pedir, com a ferramenta de
    busca de segmentação do caminho escolhido.
 
+**Configuração fixa do Instituto (não perguntar, só aplicar e mostrar no resumo):**
+
+| Recurso | Configuração | Por quê |
+|---|---|---|
+| **Advantage+ Público** | **ligado** | público aberto, de quem ainda não conhece o curso (mesma regra do pacote de lançamento para público frio). A **região** e a **idade mínima** continuam sendo limites rígidos; idade máxima e interesses viram sugestão |
+| **Posicionamentos** | **só Facebook + Instagram** (`publisher_platforms: ["facebook", "instagram"]`), todos os posicionamentos dos dois | Audience Network e Messenger ficam de fora, porque trazem conversas de baixa qualidade para WhatsApp |
+| **Advantage+ Criativo, ajustes visuais** | **desligados** | a imagem vai exatamente como o Instituto aprovou |
+| **Advantage+ Criativo, texto** | **ligado** | a Meta pode reescrever e variar os textos para testar versões |
+
+Avisar uma vez, antes do resumo: com a reescrita de texto ligada, a Meta pode mostrar **variações
+dos textos aprovados**. Elas aparecem no Gerenciador de Anúncios, na prévia do anúncio.
+
 **Categoria especial.** Se o texto falar em **vagas de emprego, contratação ou estágio**, a Meta
-exige a categoria especial `EMPLOYMENT`, que trava idade e raio mínimo. Curso gratuito sem oferta
-de vaga não precisa. Na dúvida, escrever o texto sem prometer emprego.
+exige a categoria especial `EMPLOYMENT`, que trava idade e raio mínimo **e não aceita Advantage+
+Público** (nesse caso, desligar e avisar). Curso gratuito sem oferta de vaga não precisa. Na dúvida,
+escrever o texto sem prometer emprego.
 
 ---
 
@@ -213,7 +226,8 @@ RESUMO DA CAMPANHA
 Conta de anúncios: Instituto BZN
 Objetivo: Engajamento → conversas no WhatsApp
 Onde aparece: Facebook e Instagram
-Público: {região}, {idade}
+Público: {região}, {idade}, Advantage+ Público ligado
+Advantage+ Criativo: ajustes visuais desligados, variação de texto ligada
 Orçamento: R$ {x} por dia, de {início} a {fim} (total previsto R$ {total})
 Imagem: {descrição}
 Textos: 3 textos + 3 títulos (acima)
@@ -245,7 +259,15 @@ Aceitar só `SIM` (qualquer caixa). Qualquer outra resposta: perguntar o que mud
    - `whatsapp_welcome_message` e `whatsapp_ice_breakers`
    - `primary_texts` e `headlines` (listas, porque são 3 de cada)
    - `budget_daily` em **reais** (20 = R$ 20, não centavos) e `end_time`
-   - `publisher_platforms`: `["facebook", "instagram"]`
+   - `publisher_platforms`: `["facebook", "instagram"]` (sem `facebook_positions` nem
+     `instagram_positions`, para valer todos os posicionamentos dos dois)
+   - `advantage_audience`: `true`
+   - `disabled_creative_features` (ajustes visuais desligados): `image_brightness_and_contrast`,
+     `image_auto_crop`, `image_background_gen`, `image_enhancement`, `image_templates`,
+     `image_touchups`, `image_uncrop`, `add_text_overlay`, `media_liquidity_animated_image`,
+     `adapt_to_placement`
+   - **não** enviar `advantage_plus_creative: false` (desligaria também o texto) e **não** incluir
+     `text_optimizations`, `text_generation` nem `description_automation` na lista acima
    - `locations`, `age_min`, `age_max`
    - `ad_account_id`: o da conta Instituto BZN
    - nomes: `Curso {nome} | WhatsApp | {AAAA-MM}`
@@ -254,7 +276,16 @@ Aceitar só `SIM` (qualquer caixa). Qualquer outra resposta: perguntar o que mud
 
 Só quando `is_ads_mcp_enabled: true` na conta do Instituto. Criar campanha, conjunto, criativo e
 anúncio com as ferramentas `ads_create_*` do conector, **todos pausados**, com o mesmo conteúdo acima.
-Conferir os parâmetros na descrição de cada ferramenta antes de chamar.
+Conferir os parâmetros na descrição de cada ferramenta antes de chamar. Mesma configuração fixa:
+`targeting_automation.advantage_audience = 1`, `publisher_platforms` só Facebook e Instagram, e no
+criativo os recursos visuais do Advantage+ em opt-out, mantendo os de texto.
+
+### Conferir depois de criar
+
+Ler a campanha criada e confirmar as três configurações fixas (Advantage+ Público ligado, só
+Facebook + Instagram, visuais desligados e texto ligado). Se alguma não tiver sido aplicada, avisar
+o usuário e mostrar onde ajustar no Gerenciador de Anúncios: conjunto de anúncios → **Público**
+(Advantage+) e **Posicionamentos**; anúncio → **Aprimoramentos do Advantage+ Criativo**.
 
 ### Depois de criar
 
