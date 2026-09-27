@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: meta-claude
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # 1 processo só, para o histórico das conversas ficar na mesma memória
+    startCommand: gunicorn app:app --workers 1 --threads 8 --timeout 60 --bind 0.0.0.0:$PORT
+    healthCheckPath: /
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: PAGE_ACCESS_TOKEN
+        sync: false
+      - key: META_VERIFY_TOKEN
+        sync: false
+      - key: META_APP_SECRET
+        sync: false
