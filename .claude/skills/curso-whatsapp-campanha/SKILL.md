@@ -183,7 +183,8 @@ Digite o número:
 
 ## Passo 6. Textos do anúncio
 
-Escrever e mostrar **3 textos principais** e **3 títulos**. A Meta testa as combinações sozinha.
+Escrever e mostrar **3 textos principais** e **3 títulos**. No WhatsApp o anúncio leva **um texto e um
+título**: o usuário escolhe o principal, e os outros ficam de reserva para anúncios extras.
 
 Regras dos textos:
 - Português simples, frases curtas, no máximo 2 emojis.
@@ -257,7 +258,11 @@ Aceitar só `SIM` (qualquer caixa). Qualquer outra resposta: perguntar o que mud
    - `facebook_page_id`: Página do Instituto (usar `list_meta_pages` se a ferramenta pedir)
    - `whatsapp_phone_number`: só se a Página tiver mais de um número
    - `whatsapp_welcome_message` e `whatsapp_ice_breakers`
-   - `primary_texts` e `headlines` (listas, porque são 3 de cada)
+   - `primary_text` e `headline` **únicos**. Campanhas de WhatsApp ainda **não aceitam** listas de
+     textos (`primary_texts`/`headlines`): a criação falha. Usar o texto escolhido e guardar os outros
+     como `textos_reserva` para anúncios extras (`add_meta_ad`) no mesmo conjunto
+   - `instagram_account_id`: buscar com `list_meta_instagram_accounts`. Se vier vazio, criar assim
+     mesmo e avisar o usuário para conferir a identidade do Instagram no Gerenciador
    - `budget_daily` em **reais** (20 = R$ 20, não centavos) e `end_time`
    - `publisher_platforms`: `["facebook", "instagram"]` (sem `facebook_positions` nem
      `instagram_positions`, para valer todos os posicionamentos dos dois)
@@ -338,3 +343,5 @@ Business com o link ou o passo a passo da inscrição.
 | Orçamento recusado | abaixo do mínimo da conta | subir para pelo menos R$ 5,19/dia |
 | Cota do Adspirer esgotada | 15 ações do mês usadas | esperar o próximo mês, assinar um plano, ou criar pelo Gerenciador com os textos prontos |
 | Conta do conector "ainda não liberada" | liberação gradual da Meta | usar o Adspirer |
+| "Click-to-WhatsApp campaigns don't support multi-text variants" | listas de textos em campanha de WhatsApp | um texto e um título só; nada é criado quando falha, conferir com `list_meta_campaigns` antes de repetir |
+| Nenhuma conta do Instagram encontrada | Instagram não liberado para o Adspirer ou não vinculado à Página | liberar em Integrações comerciais → Adspirer-MCP; no anúncio, conferir **Identidade → Conta do Instagram** |

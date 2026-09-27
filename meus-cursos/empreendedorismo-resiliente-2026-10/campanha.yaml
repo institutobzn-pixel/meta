@@ -1,0 +1,21 @@
+campanha:
+  via: adspirer
+  conta: "Instituto BZN (693043077032446)"
+  pagina: "Instituto Brasa Zona Norte (689073187617514)"
+  campaign_id: "120249458249600003"
+  ad_set_id: "120249458249740003"
+  ad_id: "120249458250180003"
+  creative_id: "1613650967076613"
+  criada_em: "2026-09-27"
+  status: PAUSED
+  objetivo: "OUTCOME_ENGAGEMENT -> WhatsApp"
+  orcamento_diario: 15
+  termina_em: "2026-10-06T23:59"
+  publico: "Porto Alegre, raio 17 km, 18-65, Advantage+ Público ligado"
+  posicionamentos: "facebook + instagram (sem conta do Instagram liberada no Adspirer: conferir identidade)"
+  imagem: "WhatsApp Image 2026-09-27 at 11.35.32.jpeg (hash 9b4af35c120e51502d09d5b3278b0a4f)"
+  criativo: "visuais do Advantage+ desligados, texto ligado"
+  texto: "Texto 1 (direto) + título 'Curso gratuito de empreendedorismo'"
+  textos_reserva:
+    - "Teu esforço não pode escorrer pela peneira. Faz o curso gratuito Empreendedorismo Resiliente: 4 encontros para realizar teu sonho de empreender. (...) Chama no WhatsApp e pega tua vaga."
+    - "Gratuito e presencial: curso Empreendedorismo Resiliente na Zona Norte de Porto Alegre. 4 encontros em outubro, das 19h às 22h. Vagas limitadas, chama no WhatsApp!"
